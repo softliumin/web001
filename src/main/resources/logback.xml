@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+    <logger name="org.springframework.web" level="DEBUG"/>
+
+
+    <appender name="first_log" class="ch.qos.logback.core.rolling.RollingFileAppender" >
+        <file>./first.log</file>
+        <append>false</append>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <charset>UTF-8</charset>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %class{36} %logger{50} - %msg%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>./first.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!--<maxHistory>30</maxHistory>-->
+            <!--<maxFileSize>30MB</maxFileSize>-->
+        </rollingPolicy>
+    </appender>
+
+    <logger name="cc.sharper.bootdemo002.controller" level="INFO" additivity="false">
+        <appender-ref ref="first_log"/>
+    </logger>
+
+
+</configuration>
